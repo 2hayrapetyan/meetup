@@ -1,0 +1,27 @@
+.detail {
+  text-align: center;
+}
+.detail img {
+  width: 100%;
+}
+
+.detail address {
+  padding: 2vw 0;
+}
+
+@media screen and (max-width: 768px) {
+  .detail img {
+    height: 60vw;
+  }
+
+  .detail h2 {
+    font-size: 4vw;
+  }
+  .detail address {
+    font-size: 3vw;
+    padding: 2vw 0;
+  }
+  .detail p {
+    font-size: 2.5vw;
+  }
+}

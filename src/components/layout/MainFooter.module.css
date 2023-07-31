@@ -1,0 +1,16 @@
+.container {
+    width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    background-color: #77002e;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .container {
+      padding: 1rem .5rem;
+      font-size: 2vw;
+    }
+    
+  }
