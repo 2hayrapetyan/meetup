@@ -1,55 +1,31 @@
 import MeetupDetail from "@/components/meetups/MeetupDetail";
-import { MongoClient, ObjectId } from "mongodb";
+import dbConnect from "@/mangoose/db.js";
+import Meetup from "@/mangoose/meetupSchema.js";
 import Head from "next/head";
-import { useRouter } from "next/router";
 
-function MeetupId({ meetupData }) {
-  const router = useRouter();
+function MeetupId({ meetup }) {
   return (
     <>
       <Head>
-        <title>{meetupData.title}</title>
-        <meta name='description' content={meetupData.description} />
+        <title>{meetup.title}</title>
+        <meta name='description' content={meetup.description} />
       </Head>
       <MeetupDetail
-        address={meetupData.address}
-        image={meetupData.image}
-        title={meetupData.title}
-        description={meetupData.description}
+        address={meetup.address}
+        image={meetup.image}
+        title={meetup.title}
+        description={meetup.description}
       />
     </>
   );
 }
 
-export async function getStaticPaths() {
-  const client = await MongoClient.connect(
-    "mongodb+srv://yeghish:exish2002@cluster0.0vrhcsc.mongodb.net/meetups?retryWrites=true&w=majority"
-  );
-  const db = client.db();
-  const meetupsCollection = db.collection("meetups");
-  const meetups = await meetupsCollection.find({}, { _id: 1 }).toArray();
-  client.close();
-  return {
-    fallback: 'blocking',
-    paths: meetups.map((i) => ({ params: { meetupId: i._id.toString() } })),
-  };
-}
+export async function getServerSideProps({ params }) {
+  await dbConnect();
+  const meetup = await Meetup.findById(params.meetupId).lean();
+  meetup._id = meetup._id.toString();
 
-export async function getStaticProps(context) {
-  const id = context.params.meetupId;
-
-  const client = await MongoClient.connect(
-    "mongodb+srv://yeghish:exish2002@cluster0.0vrhcsc.mongodb.net/meetups?retryWrites=true&w=majority"
-  );
-  
-  const db = client.db();
-  const meetupsCollection = db.collection("meetups");
-  const meetup = await meetupsCollection.findOne({ _id: new ObjectId(id) });
-  return {
-    props: {
-      meetupData: meetup.data,
-    },
-  };
+  return { props: { meetup } };
 }
 
 export default MeetupId;

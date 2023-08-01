@@ -1,6 +1,8 @@
 import MeetupList from "@/components/meetups/MeetupList";
-import { MongoClient } from "mongodb";
+import dbConnect from "@/mangoose/db.js";
+import Meetup from "@/mangoose/meetupSchema.js";
 import Head from "next/head";
+import Link from "next/link";
 
 function HomePage({ meetups }) {
   return (
@@ -12,39 +14,27 @@ function HomePage({ meetups }) {
           content='Browse a huge list of highly active meetups'
         />
       </Head>
-      <MeetupList meetups={meetups} />
+      {meetups.length !== 0 ? (
+        <MeetupList meetups={meetups} />
+      ) : (
+        <h2><Link href='/new-meetup' >Add meetup ?</Link></h2>
+      )}
     </>
   );
 }
 
-// export async function getServerSideProps() {
-//   return {
-//     props: {
-//       meetups: DUMY_MEETUPS,
-//     },
-//   };
-// }
-
-
-export async function getStaticProps() {
-  const client = await MongoClient.connect(
-    "mongodb+srv://yeghish:exish2002@cluster0.0vrhcsc.mongodb.net/meetups?retryWrites=true&w=majority"
-  );
-  const db = client.db();
-  const meetupsCollection = db.collection("meetups");
-  const meetups = await meetupsCollection.find().toArray();
-  client.close();
-
+export async function getServerSideProps() {
+  await dbConnect();
+  const meetups = await Meetup.find({});
   return {
     props: {
       meetups: meetups.map((meetup) => ({
-        title: meetup.data.title,
-        address: meetup.data.address,
-        image: meetup.data.image,
+        title: meetup.title,
+        address: meetup.address,
+        image: meetup.image,
         id: meetup._id.toString(),
       })),
     },
-    revalidate: 1,
   };
 }
 

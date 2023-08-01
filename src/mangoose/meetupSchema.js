@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import  mongoose, { Schema }  from "mongoose";
 
 const meetupSchema = new Schema({
   title: {
@@ -19,6 +19,6 @@ const meetupSchema = new Schema({
   },
 });
 
-const Meetup = model("Meetup", meetupSchema);
 
-export default Meetup;
+
+export default mongoose.models.Meetup || mongoose.model('Meetup', meetupSchema)

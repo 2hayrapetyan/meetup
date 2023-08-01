@@ -1,18 +1,15 @@
-import { MongoClient } from "mongodb";
+import dbConnect from "@/mangoose/db.js";
+import Meetup from "@/mangoose/meetupSchema.js";
 
-async function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method === "POST") {
-    const data = req.body;
-    const client = await MongoClient.connect(
-      "mongodb+srv://yeghish:exish2002@cluster0.0vrhcsc.mongodb.net/meetups?retryWrites=true&w=majority"
-    );
-    const db = client.db();
-    const meetupsCollection = db.collection("meetups");
-    const result = await meetupsCollection.insertOne({ data });
-    console.log(result);
-    client.close();
-    res.status(201).json({ message: "meetup insertet" });
+    try {
+      await dbConnect();
+      const meetup = await Meetup.create(req.body);
+      res.status(201).json({ success: true, data: meetup });
+    } catch (error) {
+      res.status(400).json({ success: false });
+    }
   }
 }
 
-export default handler;
