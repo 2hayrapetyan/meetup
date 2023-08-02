@@ -2,9 +2,12 @@ import NewMeetupForm from "@/components/meetups/NewMeetupForm";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
+
 function NewMeetup() {
-  const router = useRouter();
+  const {locale} = useRouter();
+  const router = useRouter()
   async function newMeetupHandler(newMeetupData) {
+    newMeetupData.lang = locale
     const response = await fetch("/api/new-meetup", {
       method: "POST",
       body: JSON.stringify(newMeetupData),
@@ -12,8 +15,8 @@ function NewMeetup() {
         "Content-type": "application/json",
       },
     });
-    const data = await response.json();
-    console.log(data);
+const data = await response.json()
+console.log(data);
     router.push("/");
   }
   return (

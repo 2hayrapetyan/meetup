@@ -17,25 +17,38 @@ function HomePage({ meetups }) {
       {meetups.length !== 0 ? (
         <MeetupList meetups={meetups} />
       ) : (
-        <h2><Link href='/new-meetup' >Add meetup ?</Link></h2>
+        <h2>
+          <Link href='/new-meetup'>Add meetup ?</Link>
+        </h2>
       )}
     </>
   );
 }
 
-export async function getServerSideProps() {
-  await dbConnect();
-  const meetups = await Meetup.find({});
-  return {
-    props: {
-      meetups: meetups.map((meetup) => ({
-        title: meetup.title,
-        address: meetup.address,
-        image: meetup.image,
-        id: meetup._id.toString(),
-      })),
-    },
-  };
+export async function getServerSideProps({ locale }) {
+  try {
+    await dbConnect();
+    const query = { [locale]: { $exists: true } };
+    const meetups = await Meetup.find(query);
+    return {
+      props: {
+        meetups: meetups.map((meetup) => ({
+          title: meetup[locale].title,
+          address: meetup[locale].address,
+          image: meetup[locale]?.image || meetup.hy.image,
+          id: meetup._id.toString(),
+        })),
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching meetups:", error);
+    return {
+      props: {
+        meetups: [],
+      },
+    };
+  }
 }
 
 export default HomePage;
+

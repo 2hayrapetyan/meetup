@@ -38,6 +38,14 @@
   color: white;
 }
 
+.select {
+  padding: 5px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+}
 @media screen and (max-width: 1024px) {
   .header {
     padding: 0 5%;

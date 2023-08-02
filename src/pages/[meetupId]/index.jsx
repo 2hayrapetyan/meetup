@@ -3,7 +3,7 @@ import dbConnect from "@/mangoose/db.js";
 import Meetup from "@/mangoose/meetupSchema.js";
 import Head from "next/head";
 
-function MeetupId({ meetup }) {
+function MeetupId({ meetup, image }) {
   return (
     <>
       <Head>
@@ -12,7 +12,7 @@ function MeetupId({ meetup }) {
       </Head>
       <MeetupDetail
         address={meetup.address}
-        image={meetup.image}
+        image={image}
         title={meetup.title}
         description={meetup.description}
       />
@@ -20,12 +20,13 @@ function MeetupId({ meetup }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, locale }) {
   await dbConnect();
   const meetup = await Meetup.findById(params.meetupId).lean();
+  const meetupByLocal = meetup[locale];
+  const image = meetup.hy.image;
   meetup._id = meetup._id.toString();
-
-  return { props: { meetup } };
+  return { props: { meetup: meetupByLocal, image } };
 }
 
 export default MeetupId;
