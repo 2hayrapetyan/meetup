@@ -1,14 +1,20 @@
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import Card from "../ui/Card";
 import classes from "./NewMeetupForm.module.css";
 import { useRouter } from "next/router";
+import ImageUpload from "./ImageUpload";
 
 function NewMeetupForm(props) {
+ const [base64,setBase64] = useState({})
   const locale = useRouter().locale;
   const titleInputRef = useRef();
   const imageInputRef = useRef();
   const addressInputRef = useRef();
   const descriptionInputRef = useRef();
+  
+function getFile(base64) {
+  setBase64(base64)
+}
 
   function submitHandler(event) {
     event.preventDefault();
@@ -18,7 +24,7 @@ function NewMeetupForm(props) {
     const enteredDescription = descriptionInputRef.current.value;
     const meetupData = {
       title: enteredTitle,
-      image: enteredImage,
+      image: enteredImage || base64,
       address: enteredAddress,
       description: enteredDescription,
     };
@@ -60,7 +66,8 @@ function NewMeetupForm(props) {
         </div>
         <div className={classes.control}>
           <label htmlFor='image'>{formText[locale].image}</label>
-          <input type='url' required id='image' ref={imageInputRef} />
+          <input type='url' id='image' ref={imageInputRef} />
+          <ImageUpload getImage={getFile}/>
         </div>
         <div className={classes.control}>
           <label htmlFor='address'>{formText[locale].address}</label>

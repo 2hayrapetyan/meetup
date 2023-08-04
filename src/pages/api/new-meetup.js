@@ -1,15 +1,33 @@
 import dbConnect from "@/mangoose/db.js";
 import Meetup from "@/mangoose/meetupSchema.js";
+import fs from "fs";
+import path from "path";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const { title, address, image, description,lang } = req.body;
+      const { title, address, image, description, lang } = req.body;
+
+      let img = null;
+      if (typeof image === "object" && image.base64 && image.fileName) {
+        try {
+          const base64Data = image.base64;
+          const fileName = image.fileName;
+          const filePath = path.join("./public/uploads", `${fileName}`);
+          const buffer = Buffer.from(base64Data, "base64");
+          fs.writeFileSync(filePath, buffer);
+          img = `/uploads/${fileName}`;
+        } catch (error) {
+          console.error("Error while writing the file:", error);
+        }
+      } else {
+        img = image;
+      }
       const languageData = {
         [lang]: {
           title,
           address,
-          image,
+          image: img,
           description,
         },
       };
@@ -22,3 +40,10 @@ export default async function handler(req, res) {
   }
 }
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "10mb",
+    },
+  },
+};
