@@ -35,7 +35,7 @@ function MainNavigation() {
     }),
     []
   );
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(true);
 
   useLayoutEffect(() => {
     const handleResize = () => {
