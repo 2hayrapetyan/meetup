@@ -1,7 +1,7 @@
 import classes from "./MainNavigation.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useState } from "react";
 import BurgerMenu from "./BurgerMenu";
 import MenuItem from "@mui/material/MenuItem";
 
@@ -37,7 +37,7 @@ function MainNavigation() {
   );
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 768);
     };
