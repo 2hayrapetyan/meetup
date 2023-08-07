@@ -6,16 +6,16 @@ import ImageUpload from "./ImageUpload";
 import useTranslations from "@/cutomHooks/useTranslation";
 
 function NewMeetupForm(props) {
- const [base64,setBase64] = useState({})
+  const [base64, setBase64] = useState({});
   const locale = useRouter().locale;
   const titleInputRef = useRef();
   const imageInputRef = useRef();
   const addressInputRef = useRef();
   const descriptionInputRef = useRef();
-  
-function getFile(base64) {
-  setBase64(base64)
-}
+
+  function getFile(base64) {
+    setBase64(base64);
+  }
 
   function submitHandler(event) {
     event.preventDefault();
@@ -32,7 +32,7 @@ function getFile(base64) {
     props.onAddMeetup(meetupData);
   }
 
-    const {newMeetup} = useTranslations(locale,['newMeetup'])
+  const { newMeetup } = useTranslations(locale, ["newMeetup"]);
 
   return (
     <Card>
@@ -42,16 +42,21 @@ function getFile(base64) {
           <input type='text' required id='title' ref={titleInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor='image'>{newMeetup &&newMeetup. image}</label>
+          <label htmlFor='image'>{newMeetup && newMeetup.image}</label>
           <input type='url' id='image' ref={imageInputRef} />
-          <ImageUpload getImage={getFile} choose={newMeetup && newMeetup.choose}/>
+          <ImageUpload
+            getImage={getFile}
+            choose={newMeetup && newMeetup.choose}
+          />
         </div>
         <div className={classes.control}>
           <label htmlFor='address'>{newMeetup && newMeetup.address}</label>
           <input type='text' required id='address' ref={addressInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor='description'>{newMeetup && newMeetup.description}</label>
+          <label htmlFor='description'>
+            {newMeetup && newMeetup.description}
+          </label>
           <textarea
             id='description'
             required
