@@ -6,11 +6,6 @@ module.exports = {
   },
 };
 module.exports = {
-  images: {
-    domains: ["https://meetup-sandy-ten.vercel.app/"],
-  },
-},
-module.exports = {
   i18n: {
     locales: ["hy", "en", "ru"],
     defaultLocale: "hy",
