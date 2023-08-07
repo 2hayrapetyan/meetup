@@ -7,7 +7,6 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
       const { title, address, image, description, lang } = req.body;
-
       let img = null;
       if (typeof image === "object" && image.base64 && image.fileName) {
         try {
@@ -23,6 +22,7 @@ export default async function handler(req, res) {
       } else {
         img = image;
       }
+
       const languageData = {
         [lang]: {
           title,

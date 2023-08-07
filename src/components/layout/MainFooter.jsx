@@ -1,24 +1,15 @@
-import { useMemo } from 'react';
-import { useRouter } from 'next/router';
-import { container } from './MainFooter.module.css';
+import { useRouter } from "next/router";
+import { container } from "./MainFooter.module.css";
+import useTranslations from "@/cutomHooks/useTranslation";
 
 function MainFooter() {
   const { locale } = useRouter();
+  const translations = useTranslations(locale, ["copyright"]);
+  const footerText = translations["copyright"];
 
-  const footerTexts = useMemo(() => ({
-    hy: `Ստեղծել է © Եղիշե Հայրապետյանը`,
-    ru: `Создано © Егише Айрапетяном`,
-    en: `Created by © Yeghishe Hayrapetyan`,
-  }), []);
-
-  return ( 
-    <footer className={container}>
-      {footerTexts[locale] || null}
-    </footer>
+  return (
+    <footer className={container}>{footerText && <p>{footerText}</p>}</footer>
   );
 }
 
 export default MainFooter;
-
-
-

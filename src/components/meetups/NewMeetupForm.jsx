@@ -1,8 +1,9 @@
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Card from "../ui/Card";
 import classes from "./NewMeetupForm.module.css";
 import { useRouter } from "next/router";
 import ImageUpload from "./ImageUpload";
+import useTranslations from "@/cutomHooks/useTranslation";
 
 function NewMeetupForm(props) {
  const [base64,setBase64] = useState({})
@@ -30,51 +31,27 @@ function getFile(base64) {
     };
     props.onAddMeetup(meetupData);
   }
-  const formText = useMemo(
-    () => ({
-      en: {
-        title: "Meetup Title",
-        image: "Meetup Image (source of the image)",
-        address: "Address",
-        description: "Description",
-        add: "Add Meetup",
-      },
-      hy: {
-        title: "վերնագիր",
-        image: "պատկեր (պատկերի հղումը)",
-        address: "Հասցե",
-        description: "նկարագրություն",
-        add: "ավելացնել",
-      },
-      ru: {
-        title: "Название",
-        image: "Изображение (источник изображения)",
-        address: "Адрес",
-        description: "Описание",
-        add: "Добавить",
-      },
-    }),
-    []
-  );
+
+    const {newMeetup} = useTranslations(locale,['newMeetup'])
 
   return (
     <Card>
       <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label htmlFor='title'>{formText[locale].title}</label>
+          <label htmlFor='title'>{newMeetup && newMeetup.title}</label>
           <input type='text' required id='title' ref={titleInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor='image'>{formText[locale].image}</label>
+          <label htmlFor='image'>{newMeetup &&newMeetup. image}</label>
           <input type='url' id='image' ref={imageInputRef} />
-          <ImageUpload getImage={getFile}/>
+          <ImageUpload getImage={getFile} choose={newMeetup && newMeetup.choose}/>
         </div>
         <div className={classes.control}>
-          <label htmlFor='address'>{formText[locale].address}</label>
+          <label htmlFor='address'>{newMeetup && newMeetup.address}</label>
           <input type='text' required id='address' ref={addressInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor='description'>{formText[locale].description}</label>
+          <label htmlFor='description'>{newMeetup && newMeetup.description}</label>
           <textarea
             id='description'
             required
@@ -83,7 +60,7 @@ function getFile(base64) {
           ></textarea>
         </div>
         <div className={classes.actions}>
-          <button>{formText[locale].add}</button>
+          <button>{newMeetup && newMeetup.button}</button>
         </div>
       </form>
     </Card>

@@ -2,25 +2,19 @@ import Link from "next/link";
 import Card from "../ui/Card";
 import classes from "./MeetupItem.module.css";
 import { useRouter } from "next/router";
-import { useMemo } from "react";
+import useTranslations from "@/cutomHooks/useTranslation";
+import Img from "./Img";
 
 function MeetupItem({ id, title, address, image }) {
   const locale = useRouter().locale;
 
-  const buttonText = useMemo(
-    () => ({
-      hy: `Ցույց տալ ավելին`,
-      ru: `Показать детали`,
-      en: `Show Details`,
-    }),
-    []
-  );
+  const { buttonText } = useTranslations(locale, ["buttonText"]);
 
   return (
     <li className={classes.item}>
       <Card>
         <div className={classes.image}>
-          <img src={image} alt={title} />
+          <Img src={image} alt={title} />
         </div>
         <div className={classes.content}>
           <h3>{title}</h3>
@@ -28,7 +22,7 @@ function MeetupItem({ id, title, address, image }) {
         </div>
         <div className={classes.actions}>
           <Link href={id} locale={locale}>
-            <button>{buttonText[locale]}</button>
+            <button>{buttonText && buttonText}</button>
           </Link>
         </div>
       </Card>

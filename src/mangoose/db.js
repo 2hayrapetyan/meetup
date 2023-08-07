@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const MONGODB_URI =
   "mongodb+srv://yeghish:exish2002@cluster0.0vrhcsc.mongodb.net/meetups?retryWrites=true&w=majority";
   
+// const MONGODB_URI = 'mongodb://127.0.0.1:27017/meetups';
   if (!MONGODB_URI) {
     throw new Error(
       'Please define the MONGODB_URI environment variable inside .env.local'

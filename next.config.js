@@ -11,6 +11,17 @@ module.exports = {
     defaultLocale: "hy",
     localeDetection: false,
   },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+        port: "",
+        pathname: "**",
+      },
+    ],
+  },
   async redirects() {
     return [
       {

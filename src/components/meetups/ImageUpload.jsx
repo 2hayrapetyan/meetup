@@ -1,18 +1,7 @@
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 
-function ImageUpload({getImage}) {
-    
-  const locale = useRouter().locale
-
-  const inputText = useMemo(
-    () => ({
-      hy: `կամ ընտրեք ֆայլը`,
-      ru: `или выберите файл`,
-      en: `or choose file`,
-    }),
-    []
-  );
+function ImageUpload({getImage,choose}) {
 
     const handleImageChange = (e) => {
       const file = e.target.files[0];
@@ -33,7 +22,7 @@ function ImageUpload({getImage}) {
     
     return ( 
         <>
-        <label htmlFor="image">{inputText[locale]}</label>
+        <label htmlFor="image">{choose}</label>
         <input type="file" name="image" id="image" onChange={handleImageChange}/>
         </>
      );
