@@ -42,8 +42,10 @@ function NewMeetupForm(props) {
           <input type='text' required id='title' ref={titleInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor='image'>{newMeetup && newMeetup.image}</label>
+          <label htmlFor='image'>{newMeetup && newMeetup.Image}</label>
           <input type='url' id='image' ref={imageInputRef} />
+        </div>
+        <div className={classes.control}>
           <ImageUpload
             getImage={getFile}
             choose={newMeetup && newMeetup.choose}
