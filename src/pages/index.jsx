@@ -1,3 +1,4 @@
+'use strict'
 import MeetupList from "@/components/meetups/MeetupList";
 import dbConnect from "@/mangoose/db.js";
 import Meetup from "@/mangoose/meetupSchema.js";

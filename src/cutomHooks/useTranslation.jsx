@@ -24,3 +24,30 @@ const useTranslations = (lang, keys) => {
 };
 
 export default useTranslations;
+
+// import { useState, useEffect, useCallback } from "react";
+
+// const useTranslations = (lang, page) => {
+//   const [translations, setTranslations] = useState({});
+
+//   const fetchTranslations = useCallback(async () => {
+//     try {
+//       const response = await fetch(
+//         `/api/translations?lang=${lang}&page=${page}`
+//       );
+//       const data = await response.json();
+//       console.log("data", data[0][lang]);
+//       setTranslations(data[0][lang]);
+//     } catch (error) {
+//       console.error("Ошибка при получении перевода:", error);
+//     }
+//   }, [lang]);
+//   useEffect(() => {
+//     fetchTranslations();
+//   }, [fetchTranslations]);
+
+//   return translations;
+// };
+
+// export default useTranslations;
+
