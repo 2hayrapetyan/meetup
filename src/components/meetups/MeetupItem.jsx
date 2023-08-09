@@ -8,7 +8,7 @@ import Img from "./Img";
 function MeetupItem({ id, title, address, image }) {
   const locale = useRouter().locale;
 
-  const { buttonText } = useTranslations(locale, ["buttonText"]);
+  const  {buttonText}  = useTranslations(locale, "home");
 
   return (
     <li className={classes.item}>

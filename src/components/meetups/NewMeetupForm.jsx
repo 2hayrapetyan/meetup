@@ -32,7 +32,7 @@ function NewMeetupForm(props) {
     props.onAddMeetup(meetupData);
   }
 
-  const { newMeetup } = useTranslations(locale, ["newMeetup"]);
+  const {newMeetup} = useTranslations(locale, "add");
 
   return (
     <Card>

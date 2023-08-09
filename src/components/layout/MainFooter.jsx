@@ -2,13 +2,10 @@ import { useRouter } from "next/router";
 import { container } from "./MainFooter.module.css";
 import useTranslations from "@/cutomHooks/useTranslation";
 
-function MainFooter() {
-  const { locale } = useRouter();
-  const translations = useTranslations(locale, ["copyright"]);
-  const footerText = translations["copyright"];
+function MainFooter({footerText}) {
 
   return (
-    <footer className={container}>{footerText && <p>{footerText}</p>}</footer>
+     <footer className={container}><p>{footerText && footerText}</p></footer>
   );
 }
 

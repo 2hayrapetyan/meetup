@@ -4,19 +4,13 @@ import { useRouter } from "next/router";
 import { useLayoutEffect, useState } from "react";
 import BurgerMenu from "./BurgerMenu";
 import MenuItem from "@mui/material/MenuItem";
-import useTranslations from "@/cutomHooks/useTranslation";
 
-function MainNavigation() {
+function MainNavigation({ navigation, title }) {
   const { locale, locales, push, pathname, query, asPath } = useRouter();
   const handleLocaleChange = (event) => {
     const selectedLocale = event.target.value;
     push({ pathname, query }, asPath, { locale: selectedLocale });
   };
-
-  const { title, navigation } = useTranslations(locale, [
-    "title",
-    "navigation",
-  ]);
 
   const [isSmallScreen, setIsSmallScreen] = useState(true);
 
