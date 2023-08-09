@@ -32,45 +32,44 @@ function NewMeetupForm(props) {
     props.onAddMeetup(meetupData);
   }
 
-  const {newMeetup} = useTranslations(locale, "add");
+  const { newMeetup } = useTranslations(locale, "add");
 
   return (
-    <Card>
-      <form className={classes.form} onSubmit={submitHandler}>
-        <div className={classes.control}>
-          <label htmlFor='title'>{newMeetup && newMeetup.title}</label>
-          <input type='text' required id='title' ref={titleInputRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='image'>{newMeetup && newMeetup.Image}</label>
-          <input type='url' id='image' ref={imageInputRef} />
-        </div>
-        <div className={classes.control}>
-          <ImageUpload
-            getImage={getFile}
-            choose={newMeetup && newMeetup.choose}
-          />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='address'>{newMeetup && newMeetup.address}</label>
-          <input type='text' required id='address' ref={addressInputRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='description'>
-            {newMeetup && newMeetup.description}
-          </label>
-          <textarea
-            id='description'
-            required
-            rows='5'
-            ref={descriptionInputRef}
-          ></textarea>
-        </div>
-        <div className={classes.actions}>
-          <button>{newMeetup && newMeetup.button}</button>
-        </div>
-      </form>
-    </Card>
+    <>
+      {newMeetup ? (
+        <Card>
+          <form className={classes.form} onSubmit={submitHandler}>
+            <div className={classes.control}>
+              <label htmlFor='title'>{newMeetup.title}</label>
+              <input type='text' required id='title' ref={titleInputRef} />
+            </div>
+            <div className={classes.control}>
+              <label htmlFor='image'>{newMeetup.Image}</label>
+              <input type='url' id='image' ref={imageInputRef} />
+            </div>
+            <div className={classes.control}>
+              <ImageUpload getImage={getFile} choose={newMeetup.choose} />
+            </div>
+            <div className={classes.control}>
+              <label htmlFor='address'>{newMeetup.address}</label>
+              <input type='text' required id='address' ref={addressInputRef} />
+            </div>
+            <div className={classes.control}>
+              <label htmlFor='description'>{newMeetup.description}</label>
+              <textarea
+                id='description'
+                required
+                rows='5'
+                ref={descriptionInputRef}
+              ></textarea>
+            </div>
+            <div className={classes.actions}>
+              <button>{newMeetup.button}</button>
+            </div>
+          </form>
+        </Card>
+      ) : null}
+    </>
   );
 }
 

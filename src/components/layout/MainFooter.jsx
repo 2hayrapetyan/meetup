@@ -5,7 +5,7 @@ import useTranslations from "@/cutomHooks/useTranslation";
 function MainFooter({footerText}) {
 
   return (
-     <footer className={container}><p>{footerText && footerText}</p></footer>
+     <footer className={container}><p>{footerText}</p></footer>
   );
 }
 

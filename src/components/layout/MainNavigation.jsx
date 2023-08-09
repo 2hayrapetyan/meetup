@@ -26,64 +26,66 @@ function MainNavigation({ navigation, title }) {
   }, []);
 
   return (
-    <header className={classes.header}>
-      <div className={classes.logo}>{title && title}</div>
-      {isSmallScreen ? (
-        <BurgerMenu>
-          <MenuItem>
-            <Link href='/'>{navigation && navigation.navItem1}</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link href='/new-meetup'>{navigation && navigation.navItem2}</Link>
-          </MenuItem>
-          <MenuItem>
-            <select
-              value={locale}
-              onChange={handleLocaleChange}
-              className={classes.select}
-            >
-              <option value='' disabled>
-                {navigation && navigation.navItem3}
-              </option>
-              {locales.map((loc) => (
-                <option key={loc} value={loc}>
-                  {loc}
-                </option>
-              ))}
-            </select>
-          </MenuItem>
-        </BurgerMenu>
-      ) : (
-        <nav>
-          <ul>
-            <li>
-              <Link href='/'>{navigation && navigation.navItem1}</Link>
-            </li>
-            <li>
-              <Link href='/new-meetup'>
-                {navigation && navigation.navItem2}
-              </Link>
-            </li>
-            <li>
-              <select
-                value={locale}
-                onChange={handleLocaleChange}
-                className={classes.select}
-              >
-                <option value='' disabled>
-                  {navigation && navigation.navItem3}
-                </option>
-                {locales.map((loc) => (
-                  <option key={loc} value={loc}>
-                    {loc}
+    <>
+      {navigation && title ? (
+        <header className={classes.header}>
+          <div className={classes.logo}>{title}</div>
+          {isSmallScreen ? (
+            <BurgerMenu>
+              <MenuItem>
+                <Link href='/'>{navigation.navItem1}</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link href='/new-meetup'>{navigation.navItem2}</Link>
+              </MenuItem>
+              <MenuItem>
+                <select
+                  value={locale}
+                  onChange={handleLocaleChange}
+                  className={classes.select}
+                >
+                  <option value='' disabled>
+                    {navigation.navItem3}
                   </option>
-                ))}
-              </select>
-            </li>
-          </ul>
-        </nav>
-      )}
-    </header>
+                  {locales.map((loc) => (
+                    <option key={loc} value={loc}>
+                      {loc}
+                    </option>
+                  ))}
+                </select>
+              </MenuItem>
+            </BurgerMenu>
+          ) : (
+            <nav>
+              <ul>
+                <li>
+                  <Link href='/'>{navigation.navItem1}</Link>
+                </li>
+                <li>
+                  <Link href='/new-meetup'>{navigation.navItem2}</Link>
+                </li>
+                <li>
+                  <select
+                    value={locale}
+                    onChange={handleLocaleChange}
+                    className={classes.select}
+                  >
+                    <option value='' disabled>
+                      {navigation.navItem3}
+                    </option>
+                    {locales.map((loc) => (
+                      <option key={loc} value={loc}>
+                        {loc}
+                      </option>
+                    ))}
+                  </select>
+                </li>
+              </ul>
+            </nav>
+          )}
+        </header>
+      ) : null}
+    </>
   );
 }
 

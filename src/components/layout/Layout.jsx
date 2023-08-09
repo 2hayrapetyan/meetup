@@ -8,11 +8,15 @@ function Layout(props) {
   const locale = useRouter().locale
   const translations = useTranslations(locale,'layout')
   return (
-    <div>
-      <MainNavigation navigation={translations && translations.navigation} title={translations && translations.title}/>
+  <>
+  {translations ? (
+      <div>
+      <MainNavigation navigation={translations.navigation} title={translations.title}/>
       <main className={classes.main}>{props.children}</main>
-      <MainFooter footerText={translations && translations.copyright}/>
+      <MainFooter footerText={translations.copyright}/>
     </div>
+  ) : null}
+  </>
   );
 }
 
