@@ -12,10 +12,10 @@ export default async function handler(req, res) {
         try {
           const base64Data = image.base64;
           const fileName = image.fileName;
-          const filePath = path.join("./public/uploads", `${fileName}`);
+          const filePath = path.join("./public/", `${fileName}`);
           const buffer = Buffer.from(base64Data, "base64");
           fs.writeFileSync(filePath, buffer);
-          img = `/public/uploads/${fileName}`;
+          img = `/${fileName}`;
         } catch (error) {
           console.error("Error while writing the file:", error);
         }
