@@ -12,10 +12,10 @@ export default async function handler(req, res) {
         try {
           const base64Data = image.base64;
           const fileName = image.fileName;
-          const filePath = path.join("https://meetup-sandy-ten.vercel.app/assets/images/ ", `${fileName}`);
+          const filePath = path.join("https://meetup-sandy-ten.vercel.app/_next/ ", `${fileName}`);
           const buffer = Buffer.from(base64Data, "base64");
           fs.writeFileSync(filePath, buffer);
-          img = `https://meetup-sandy-ten.vercel.app/assets/images/${fileName}`;
+          img = `https://meetup-sandy-ten.vercel.app/_next/${fileName}`;
         } catch (error) {
           console.error("Error while writing the file:", error);
         }
