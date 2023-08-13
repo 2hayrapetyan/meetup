@@ -10,8 +10,8 @@ function Layout(props) {
   return (
   <>
   {translations ? (
-      <div>
-      <MainNavigation navigation={translations.navigation} title={translations.title}/>
+      <div className={classes.container}>
+      <MainNavigation navigation={translations.navigation}/>
       <main className={classes.main}>{props.children}</main>
       <MainFooter footerText={translations.copyright}/>
     </div>

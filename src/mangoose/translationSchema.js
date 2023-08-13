@@ -6,6 +6,9 @@ const translationSchema = new Schema({
       type: String,
     },
     navigation: {
+      navItem0: {
+        type: String,
+      },
       navItem1: {
         type: String,
       },
@@ -19,35 +22,41 @@ const translationSchema = new Schema({
     buttonText: {
       type: String,
     },
-    newMeetup:{
-        title:{
-            type:String
-        },
-        Image:{
-            type:String
-        },
-        choose:{
-          type:String
+    newMeetup: {
+      title: {
+        type: String,
       },
-        address:{
-            type:String
-        },
-        description:{
-            type:String
-        },
-        button:{
-            type:String
-        }
+      Image: {
+        type: String,
+      },
+      choose: {
+        type: String,
+      },
+      address: {
+        type: String,
+      },
+      description: {
+        type: String,
+      },
+      button: {
+        type: String,
+      },
     },
-    copyright:{
-        type:String
-    }
+    copyright: {
+      type: String,
+    },
+    header: {
+      type: String,
+    },
   },
   hy: {
     title: {
       type: String,
     },
     navigation: {
+      navItem0: {
+        type: String,
+      },
       navItem1: {
         type: String,
       },
@@ -61,35 +70,41 @@ const translationSchema = new Schema({
     buttonText: {
       type: String,
     },
-    newMeetup:{
-        title:{
-            type:String
-        },
-        Image:{
-            type:String
-        },
-        choose:{
-            type:String
-        },
-        address:{
-            type:String
-        },
-        description:{
-            type:String
-        },
-        button:{
-            type:String
-        }
+    newMeetup: {
+      title: {
+        type: String,
+      },
+      Image: {
+        type: String,
+      },
+      choose: {
+        type: String,
+      },
+      address: {
+        type: String,
+      },
+      description: {
+        type: String,
+      },
+      button: {
+        type: String,
+      },
     },
-    copyright:{
-        type:String
-    }
+    copyright: {
+      type: String,
+    },
+    header: {
+      type: String,
+    },
   },
   ru: {
     title: {
       type: String,
     },
     navigation: {
+      navItem0: {
+        type: String,
+      },
       navItem1: {
         type: String,
       },
@@ -103,29 +118,32 @@ const translationSchema = new Schema({
     buttonText: {
       type: String,
     },
-    newMeetup:{
-        title:{
-            type:String
-        },
-        Image:{
-            type:String
-        },
-        choose:{
-          type:String
+    newMeetup: {
+      title: {
+        type: String,
       },
-        address:{
-            type:String
-        },
-        description:{
-            type:String
-        },
-        button:{
-            type:String
-        }
+      Image: {
+        type: String,
+      },
+      choose: {
+        type: String,
+      },
+      address: {
+        type: String,
+      },
+      description: {
+        type: String,
+      },
+      button: {
+        type: String,
+      },
     },
-    copyright:{
-        type:String
-    }
+    copyright: {
+      type: String,
+    },
+    header: {
+      type: String,
+    },
   },
 });
 

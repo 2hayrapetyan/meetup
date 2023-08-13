@@ -1,17 +1,11 @@
 .header {
   width: 100%;
-  height: 5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #77002e;
-  padding: 0 10%;
-}
-
-.logo {
-  font-size: 2rem;
-  color: white;
-  font-weight: bold;
+  z-index: 1;
+  padding: 10px 5%;
+  animation: fadeInAnimation 1.8s ease-in-out forwards;
 }
 
 .header ul {
@@ -19,40 +13,46 @@
   margin: 0;
   padding: 0;
   display: flex;
+  gap: 5.5vw;
   align-items: baseline;
-}
-
-.header li {
-  margin-left: 3rem;
 }
 
 .header a {
   text-decoration: none;
   font-size: 1.5rem;
-  color: #fcb8d2;
+  color: white;
 }
 
 .header a:hover,
 .header a:active,
 .header a.active {
-  color: white;
+  color: black;
+  transition: all ease-in 0.2s;
 }
 
 .select {
   padding: 5px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
   border-radius: 5px;
-  background-color: #fff;
-  color: #333;
+  background-color: transparent;
+  color: white;
+  appearance: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.select:hover{
+  color: black;
+  transition: all ease-in 0.2s;
+}
+.select option {
+  color: #555;
 }
 @media screen and (max-width: 1024px) {
   .header {
     padding: 0 5%;
-  }
-
-  .logo {
-    font-size: 3.5vw;
   }
 }
 
@@ -61,11 +61,6 @@
     height: 4rem;
     padding: 0 4%;
   }
-
-  .logo {
-    font-size: 1.5rem;
-  }
-
 }
 
 @media screen and (max-width: 540px) {
@@ -73,9 +68,17 @@
     height: 3rem;
     padding: 0 4%;
   }
+}
 
-  .logo {
-    font-size: 5vw;
+
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+    /* transform: translateY(-20px); */
   }
-
+  100% {
+    opacity: 1;
+    /* transform: translateY(0); */
+  }
 }

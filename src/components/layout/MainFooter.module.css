@@ -4,9 +4,22 @@
     margin: 0 auto;
     text-align: center;
     color: white;
-    background-color: #77002e;
+    background-color: transparent;
   }
   
+  .text{
+    position: relative;
+  }
+  .text::before {
+      content: "";
+      position: absolute;
+       bottom: 38px;
+      left: 50%; 
+      transform: translateX(-50%);
+      width: 32%;
+      height: 1.45px; 
+      background-color: white; 
+  }
   @media screen and (max-width: 768px) {
     .container {
       padding: 1rem .5rem;

@@ -1,11 +1,9 @@
-import { useRouter } from "next/router";
-import { container } from "./MainFooter.module.css";
-import useTranslations from "@/cutomHooks/useTranslation";
+import { container,text } from "./MainFooter.module.css";
 
 function MainFooter({footerText}) {
 
   return (
-     <footer className={container}><p>{footerText}</p></footer>
+     <footer className={container}><p className={text}>{footerText}</p></footer>
   );
 }
 

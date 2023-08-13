@@ -3,8 +3,9 @@ import dbConnect from "../../mangoose/db";
 
 function pages(l, p) {
   const page = {
-    layout: `${l}.copyright ${l}.navigation ${l}.title`,
-    home: `${l}.buttonText`,
+    layout: `${l}.copyright ${l}.navigation`,
+    home:`${l}.title ${l}.header`,
+    allMeetups: `${l}.buttonText`,
     add: ` ${l}.newMeetup`,
   };
   return page[p];

@@ -4,8 +4,9 @@ import { useRouter } from "next/router";
 import { useLayoutEffect, useState } from "react";
 import BurgerMenu from "./BurgerMenu";
 import MenuItem from "@mui/material/MenuItem";
+import Logo from "../ui/Logo";
 
-function MainNavigation({ navigation, title }) {
+function MainNavigation({ navigation }) {
   const { locale, locales, push, pathname, query, asPath } = useRouter();
   const handleLocaleChange = (event) => {
     const selectedLocale = event.target.value;
@@ -27,13 +28,16 @@ function MainNavigation({ navigation, title }) {
 
   return (
     <>
-      {navigation && title ? (
+      {navigation ? (
         <header className={classes.header}>
-          <div className={classes.logo}>{title}</div>
+            <Logo />
           {isSmallScreen ? (
             <BurgerMenu>
               <MenuItem>
-                <Link href='/'>{navigation.navItem1}</Link>
+                <Link href='/'>{navigation.navItem0}</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link href='/all-meetups'>{navigation.navItem1}</Link>
               </MenuItem>
               <MenuItem>
                 <Link href='/new-meetup'>{navigation.navItem2}</Link>
@@ -59,7 +63,10 @@ function MainNavigation({ navigation, title }) {
             <nav>
               <ul>
                 <li>
-                  <Link href='/'>{navigation.navItem1}</Link>
+                <Link href='/'>{navigation.navItem0}</Link>
+                </li>
+                <li>
+                  <Link href='/all-meetups'>{navigation.navItem1}</Link>
                 </li>
                 <li>
                   <Link href='/new-meetup'>{navigation.navItem2}</Link>

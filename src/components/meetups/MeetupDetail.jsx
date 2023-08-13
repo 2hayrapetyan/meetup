@@ -1,4 +1,4 @@
-import Img from './Img';
+import Img from '../ui/Img';
 import classes from './MeetupDetail.module.css'
 
 
