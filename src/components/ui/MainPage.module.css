@@ -2,19 +2,21 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
 .img {
   z-index: -1;
   width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: 50% 53%;
 }
 
 .zoomed {
-  animation: scaleAnimation 1.4s ease-in-out;
+  animation: scaleAnimation 2.2s normal forwards;
 }
 .hero {
   position: absolute;
@@ -23,8 +25,8 @@
   width: 50%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  color: #ffffffed;
+  gap: 1.7rem;
+  color: #F5F5F5FF;
 }
 .hero h2 {
   width: 74%;
@@ -32,27 +34,79 @@
 }
 .hero p {
   width: 85%;
-  font-size: 1.15vw;
+  font-size: 1.2vw;
 }
 
 .hero.fadeIn {
-  animation: fadeInAnimation 0.8s ease-in-out forwards;
+  animation: fadeInAnimation 1.5s ease-in-out forwards;
 }
 
+
+@media screen and (max-width: 1024px) {
+  .hero {
+    width: 60%;
+  }
+  .hero h2 {
+    width: 80%;
+    font-size: 4.5vw;
+  }
+  .hero p {
+    width: 90%;
+    font-size: 1.6vw;
+  }
+  
+}
+
+@media screen and (max-width: 768px) {
+
+  .hero {
+    left: 20%;
+    top: 15%;
+    width: 70%;
+  }
+  .hero h2 {
+    width: 90%;
+    font-size: 6vw;
+  }
+  .hero p {
+    width: 90%;
+    font-size: 1.9vw;
+    line-height: 3vw;
+  }
+}
+@media screen and (max-width: 540px) {
+
+  .hero {
+    left: 14%;
+    top: 18%;
+    width: 75%;
+    gap:2rem
+  }
+  .hero h2 {
+    width: 100%;
+    font-size: 7.2vw;
+  }
+  .hero p {
+    width: 100%;
+    font-size: 2.2vw;
+    line-height: 3.3vw;
+  }
+}
 @keyframes fadeInAnimation {
   0% {
     opacity: 0;
-    /* transform: translateY(-20px); */
+    transform: scale(0.95);
   }
+  
   100% {
     opacity: 1;
-    /* transform: translateY(0); */
+    transform: scale(1);
   }
 }
 
 @keyframes scaleAnimation {
   0% {
-    transform: scale(1.7);
+    transform: scale(2.5);
   }
   100% {
     transform: scale(1);

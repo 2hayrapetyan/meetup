@@ -1,3 +1,35 @@
+
+.primary a{
+  color: white;
+}
+.primary a:hover,
+.primary a:active,
+.primary a.active {
+  color: #25201FE7;
+}
+.primary select {
+  color: white;
+}
+.primary select:hover {
+  color: #25201FE7;
+}
+
+.secondary a{
+  color: #25201FE7;
+}
+.secondary a:hover,
+.secondary a:active,
+.secondary a.active {
+  color: white;
+}
+.secondary select {
+  color: #25201FE7;
+}
+.secondary select:hover {
+  color: white;
+}
+
+
 .header {
   width: 100%;
   display: flex;
@@ -5,7 +37,7 @@
   justify-content: space-between;
   z-index: 1;
   padding: 10px 5%;
-  animation: fadeInAnimation 1.8s ease-in-out forwards;
+  animation: fadeInAnimation 2.2s ease-in-out forwards;
 }
 
 .header ul {
@@ -13,47 +45,52 @@
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 5.5vw;
   align-items: baseline;
+  gap: 5.4vw;
 }
 
 .header a {
   text-decoration: none;
   font-size: 1.5rem;
-  color: white;
 }
 
 .header a:hover,
 .header a:active,
 .header a.active {
-  color: black;
   transition: all ease-in 0.2s;
 }
 
-.select {
+.header select {
   padding: 5px;
   font-size: 1.5rem;
   border: none;
   outline: none;
   border-radius: 5px;
   background-color: transparent;
-  color: white;
   appearance: none;
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
-.select:hover{
-  color: black;
+.header select:hover{
   transition: all ease-in 0.2s;
 }
-.select option {
+.header select option {
   color: #555;
 }
+
+
 @media screen and (max-width: 1024px) {
   .header {
-    padding: 0 5%;
+    padding: 5px 5%;
   }
+  .header a {
+    font-size: 1.2rem;
+  }
+  .header select {
+    font-size: 1.2rem;
+  }
+  
 }
 
 @media screen and (max-width: 768px) {
@@ -63,22 +100,12 @@
   }
 }
 
-@media screen and (max-width: 540px) {
-  .header {
-    height: 3rem;
-    padding: 0 4%;
-  }
-}
-
-
 
 @keyframes fadeInAnimation {
   0% {
     opacity: 0;
-    /* transform: translateY(-20px); */
   }
   100% {
     opacity: 1;
-    /* transform: translateY(0); */
   }
 }

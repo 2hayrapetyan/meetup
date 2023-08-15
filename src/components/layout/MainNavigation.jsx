@@ -1,4 +1,4 @@
-import classes from "./MainNavigation.module.css";
+import {header,select,primary,secondary} from "./MainNavigation.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useLayoutEffect, useState } from "react";
@@ -29,7 +29,7 @@ function MainNavigation({ navigation }) {
   return (
     <>
       {navigation ? (
-        <header className={classes.header}>
+        <header className={`${header} ${pathname === '/' ? primary : secondary}`} >
             <Logo />
           {isSmallScreen ? (
             <BurgerMenu>
@@ -46,7 +46,7 @@ function MainNavigation({ navigation }) {
                 <select
                   value={locale}
                   onChange={handleLocaleChange}
-                  className={classes.select}
+                  className={select}
                 >
                   <option value='' disabled>
                     {navigation.navItem3}
@@ -75,7 +75,7 @@ function MainNavigation({ navigation }) {
                   <select
                     value={locale}
                     onChange={handleLocaleChange}
-                    className={classes.select}
+                    className={select}
                   >
                     <option value='' disabled>
                       {navigation.navItem3}

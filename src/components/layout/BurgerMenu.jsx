@@ -2,10 +2,12 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const ITEM_HEIGHT = 100;
 
 export default function BurgerMenu({children}) {
+const pathname =  useRouter().pathname
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -18,7 +20,7 @@ export default function BurgerMenu({children}) {
   return (
     <div >
       <IconButton
-      style={{color:'white'}}
+      style={{color:pathname === '/' ? 'white' : '#25201FE7'}}
         aria-label="more"
         id="long-button"
         aria-controls={open ? 'long-menu' : undefined}

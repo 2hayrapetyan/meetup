@@ -1,29 +1,58 @@
 .container {
-    width: 100%;
-    padding: 1rem;
-    margin: 0 auto;
-    text-align: center;
-    color: white;
-    background-color: transparent;
-  }
-  
-  .text{
-    position: relative;
+  width: 100%;
+  padding: 1rem;
+  margin: 0 auto;
+  text-align: center;
+  background-color: transparent;
+}
+
+.text {
+  position: relative;
+  font-size: 0.8vw;
+}
+.text::before {
+  content: "";
+  position: absolute;
+  bottom: 1.7vw;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32%;
+  height: 1.45px;
+}
+
+.primary {
+  color: white;
+}
+.primary .text::before {
+  background-color: white;
+}
+.secondary {
+  color: #25201fe7;
+}
+.secondary .text::before {
+  background-color: #25201fe7;
+}
+
+@media screen and (max-width: 1024px) {
+  .text {
+    font-size: 1vw;
   }
   .text::before {
-      content: "";
-      position: absolute;
-       bottom: 38px;
-      left: 50%; 
-      transform: translateX(-50%);
-      width: 32%;
-      height: 1.45px; 
-      background-color: white; 
+    bottom: 2.2vw;
+    width: 40%;
+    height: 1px;
   }
-  @media screen and (max-width: 768px) {
-    .container {
-      padding: 1rem .5rem;
-      font-size: 2vw;
-    }
-    
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 1rem 0.5rem;
   }
+  .text {
+    font-size: 1.7vw;
+  }
+  .text::before {
+    bottom: 4vw;
+    width: 50%;
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
 import { img, hero, imgContainer, zoomed,fadeIn } from "./MainPage.module.css";
 import useTranslations from "@/cutomHooks/useTranslation";
@@ -12,7 +13,7 @@ function MainPage() {
   useEffect(() => {
     setTimeout(() => {
       setIsZoomed(false);
-    }, 2000);
+    }, 2600);
   }, []);
 
   return (
