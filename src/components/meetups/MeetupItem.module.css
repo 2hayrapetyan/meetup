@@ -72,6 +72,7 @@
   .actions button {
     padding: 0.4rem 1.2rem;
     border-radius: 8px;
+    font-size: .8rem;
   }
 }
 @media screen and (max-width: 500px) {
@@ -92,5 +93,6 @@
   .actions button {
     padding: 0.3rem 1.1rem;
     border-radius: 8px;
+    font-size: .6rem;
   }
 }
