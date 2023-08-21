@@ -1,5 +1,6 @@
-'use strict'
+"use strict";
 import MeetupList from "@/components/meetups/MeetupList";
+import Spinner from "@/components/ui/Spinner";
 import dbConnect from "@/mangoose/db.js";
 import Meetup from "@/mangoose/meetupSchema.js";
 import Head from "next/head";
@@ -14,14 +15,23 @@ function HomePage({ meetups }) {
           name='description'
           content='Browse a huge list of highly active meetups'
         />
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="480x480"></link>
+        <link
+          rel='icon'
+          href='/favicon.ico'
+          type='image/x-icon'
+          sizes='480x480'
+        ></link>
       </Head>
-      {meetups.length !== 0 ? (
-        <MeetupList meetups={meetups} />
+      {meetups ? (
+        meetups.length !== 0 ? (
+          <MeetupList meetups={meetups} />
+        ) : (
+          <h2>
+            <Link href='/new-meetup'>Add meetup ?</Link>
+          </h2>
+        )
       ) : (
-        <h2>
-          <Link href='/new-meetup'>Add meetup ?</Link>
-        </h2>
+        <Spinner />
       )}
     </>
   );
@@ -53,4 +63,3 @@ export async function getServerSideProps({ locale }) {
 }
 
 export default HomePage;
-

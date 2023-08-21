@@ -4,9 +4,11 @@ import classes from "./NewMeetupForm.module.css";
 import { useRouter } from "next/router";
 import ImageUpload from "./ImageUpload";
 import useTranslations from "@/cutomHooks/useTranslation";
+import Spinner from "../ui/Spinner";
 
 function NewMeetupForm(props) {
   const [base64, setBase64] = useState({});
+
   const locale = useRouter().locale;
   const titleInputRef = useRef();
   const imageInputRef = useRef();
@@ -17,7 +19,7 @@ function NewMeetupForm(props) {
     setBase64(base64);
   }
 
-  function submitHandler(event) {
+  async function submitHandler(event) {
     event.preventDefault();
     const enteredTitle = titleInputRef.current.value;
     const enteredImage = imageInputRef.current.value;
@@ -36,8 +38,8 @@ function NewMeetupForm(props) {
 
   return (
     <>
-      {newMeetup ? (
-        <Card>
+      <Card>
+        {newMeetup ? (
           <form className={classes.form} onSubmit={submitHandler}>
             <div className={classes.control}>
               <label htmlFor='title'>{newMeetup.title}</label>
@@ -67,8 +69,10 @@ function NewMeetupForm(props) {
               <button>{newMeetup.button}</button>
             </div>
           </form>
-        </Card>
-      ) : null}
+        ) : (
+          <Spinner />
+        )}
+      </Card>
     </>
   );
 }

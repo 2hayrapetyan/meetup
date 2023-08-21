@@ -9,20 +9,17 @@ export default async function handler(req, res) {
       const { title, address, image, description, lang } = req.body;
       let img = null;
       if (typeof image === "object" && image.base64 && image.fileName) {
-        try {
-          const base64Data = image.base64;
-          const fileName = image.fileName;
-          const filePath = path.join("./public", `${fileName}`);
-          const buffer = Buffer.from(base64Data, "base64");
-          fs.writeFileSync(filePath, buffer);
-          img = `./${fileName}`;
-        } catch (error) {
-          console.error("Error while writing the file:", error);
-        }
-      } else {
+        const base64Data = image.base64;
+        const fileName = image.fileName;
+        const filePath = path.join("./public", `${fileName}`);
+        const buffer = Buffer.from(base64Data, "base64");
+        fs.writeFileSync(filePath, buffer);
+        img = `/${image.fileName}`;
+      } else if (typeof image === "string") {
         img = image;
+      } else {
+        throw new Error("Неверный формат изображения");
       }
-
       const languageData = {
         [lang]: {
           title,
