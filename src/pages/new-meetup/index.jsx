@@ -23,7 +23,6 @@ function NewMeetup() {
     setIsSubmitting(true);
     try {
       let res = await IsNSFWContent(newMeetupData.image);
-      console.log(res);
       if (res === "safe") {
         const response = await fetch("/api/new-meetup", {
           method: "POST",

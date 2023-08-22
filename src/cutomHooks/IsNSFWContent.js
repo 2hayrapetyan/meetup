@@ -33,7 +33,6 @@ async function IsNSFWContent(image) {
         },
       });
       const data = await response.json();
-      console.log(data);
       result = isNatureLandscape(data.result.categories);
       return result;
     } else if (typeof image === "object") {
@@ -48,7 +47,6 @@ async function IsNSFWContent(image) {
         },
       });
       const responseData = await response.json();
-      console.log(responseData);
       result = isNatureLandscape(responseData.result.categories);
       return result;
     } else {
