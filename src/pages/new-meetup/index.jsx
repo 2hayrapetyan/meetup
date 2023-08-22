@@ -1,4 +1,5 @@
 import NewMeetupForm from "@/components/meetups/NewMeetupForm";
+import Card from "@/components/ui/Card";
 import Spinner from "@/components/ui/Spinner";
 import IsNSFWContent from "@/cutomHooks/IsNSFWContent";
 import Head from "next/head";
@@ -7,15 +8,23 @@ import { useState } from "react";
 
 function NewMeetup() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(false);
 
   const { locale } = useRouter();
   const router = useRouter();
+
+  const errorText = {
+    en: "the image content is incorrect",
+    hy: "Նկարի պարունակությունը անընդունելի է",
+    ru: "Содержимое изображения некорректное",
+  };
+
   async function newMeetupHandler(newMeetupData) {
     setIsSubmitting(true);
     try {
-      let res = await IsNSFWContent(newMeetupData.image)
+      let res = await IsNSFWContent(newMeetupData.image);
       console.log(res);
-      if(res === 'safe') {
+      if (res === "safe") {
         const response = await fetch("/api/new-meetup", {
           method: "POST",
           body: JSON.stringify({ ...newMeetupData, lang: locale }),
@@ -27,14 +36,16 @@ function NewMeetup() {
           throw new Error("Ошибка при создании встречи.");
         }
         router.push("/all-meetups");
-      }else{
-        console.log('chmo normal nkar qic');
+      } else {
+        setError(true);
       }
     } catch (error) {
       console.error("Ошибка при создании встречи:", error);
+      setError(true);
     }
     setIsSubmitting(false);
   }
+
   return (
     <>
       <Head>
@@ -46,6 +57,23 @@ function NewMeetup() {
       </Head>
       {isSubmitting ? (
         <Spinner />
+      ) : error ? (
+        <Card>
+          <p style={{ padding: "20px" }}>
+            {errorText[locale]}
+            <span
+              onClick={() => setError(false)}
+              style={{
+                cursor: "pointer",
+                marginLeft: "15px",
+                color: "blue",
+                fontSize: "1.3rem",
+              }}
+            >
+              &#x21bb;
+            </span>
+          </p>
+        </Card>
       ) : (
         <NewMeetupForm onAddMeetup={newMeetupHandler} />
       )}
