@@ -42,3 +42,8 @@
 .actions button:active {
   background-color: #ffe2ed;
 }
+.checkboxes {
+  display: flex;
+  margin: .6rem 0;
+  gap: 2vw;
+}

@@ -6,7 +6,7 @@ import path from "path";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const { title, address, image, description, lang } = req.body;
+       const { ru,en,hy,image } = req.body;
       let img = null;
       if (typeof image === "object" && image.base64 && image.fileName) {
         const base64Data = image.base64;
@@ -20,16 +20,16 @@ export default async function handler(req, res) {
       } else {
         throw new Error("Неверный формат изображения");
       }
-      const languageData = {
-        [lang]: {
-          title,
-          address,
-          image: img,
-          description,
-        },
-      };
+      const data = {
+        ru,
+        en,
+        hy:{
+          ...hy,
+          image:img
+        }
+    }
       await dbConnect();
-      const meetup = await Meetup.create(languageData);
+      const meetup = await Meetup.create(data);
       res.status(201).json({ success: true, data: meetup });
     } catch (error) {
       res.status(400).json({ success: false });

@@ -26,7 +26,7 @@ function NewMeetup() {
       if (res === "safe") {
         const response = await fetch("/api/new-meetup", {
           method: "POST",
-          body: JSON.stringify({ ...newMeetupData, lang: locale }),
+          body: JSON.stringify(newMeetupData),
           headers: {
             "Content-type": "application/json",
           },
