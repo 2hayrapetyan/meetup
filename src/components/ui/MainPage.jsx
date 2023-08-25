@@ -16,15 +16,26 @@ function MainPage() {
     }, 2600);
   }, []);
 
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  useEffect(() => {
+    const image = new Image();
+    image.src = "/images/wall-image.jpg";
+    image.onload = () => {
+      setIsImageLoaded(true);
+    };
+  }, []);
   return (
     <>
-      <div className={imgContainer}>
-        <img
-          className={`${img} ${isZoomed ? zoomed : ""}`}
-          src='/images/wall-image.jpg'
-          alt='wallpaper'
-        />
-      </div>
+      {isImageLoaded && (
+        <div className={imgContainer}>
+          <img
+            className={`${img} ${isZoomed ? zoomed : ""}`}
+            src='/images/wall-image.jpg'
+            alt='wallpaper'
+          />
+        </div>
+      )}
       {!isZoomed && title && header ? (
         <div className={`${hero} ${fadeIn}`}>
           <h2>{title}</h2>
